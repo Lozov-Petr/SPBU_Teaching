@@ -1,0 +1,72 @@
+(env
+ (dev
+  (flags
+   (:standard -warn-error -partial-match -w -32-33-39-K-9))))
+
+(library
+ (name Helpers_fun)
+ (modules helpers_fun))
+
+(executable
+ (name Append)
+ (modules append)
+ (libraries Helpers_fun))
+
+(executable
+ (name Sort)
+ (modules sort)
+ (libraries Helpers_fun))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(library
+ (name Helpers_rel)
+ (modules helpers_rel)
+ (libraries OCanren GT OCanren.tester)
+ (flags
+  (:standard -rectypes))
+ (preprocess
+  (pps
+   OCanren-ppx.ppx_fresh
+   OCanren-ppx.ppx_distrib
+   GT.ppx_all
+   OCanren-ppx.ppx_deriving_reify)))
+
+(executable
+ (name First_step)
+ (modules first_step)
+ (libraries OCanren Helpers_rel)
+ (flags
+  (:standard -rectypes))
+ (preprocess
+  (pps
+   OCanren-ppx.ppx_fresh
+   OCanren-ppx.ppx_distrib
+   GT.ppx_all
+   OCanren-ppx.ppx_deriving_reify)))
+
+(executable
+ (name Appendo)
+ (modules appendo)
+ (libraries OCanren Helpers_rel)
+ (flags
+  (:standard -rectypes))
+ (preprocess
+  (pps
+   OCanren-ppx.ppx_fresh
+   OCanren-ppx.ppx_distrib
+   GT.ppx_all
+   OCanren-ppx.ppx_deriving_reify)))
+
+(executable
+ (name Sorto)
+ (modules sorto)
+ (libraries OCanren Helpers_rel)
+ (flags
+  (:standard -rectypes))
+ (preprocess
+  (pps
+   OCanren-ppx.ppx_fresh
+   OCanren-ppx.ppx_distrib
+   GT.ppx_all
+   OCanren-ppx.ppx_deriving_reify)))
