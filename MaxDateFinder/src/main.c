@@ -48,18 +48,18 @@ bool isValidDate(Date date)
     {
         if (date.year % 4 == 0)
         {
-            return date.month <= 29;
+            return date.day <= 29;
         }
 
-        return date.month <= 28;
+        return date.day <= 28;
     }
 
     if (date.month % 2 == 1)
     {
-        return date.month <= 31;
+        return date.day <= 31;
     }
 
-    return date.month <= 30;
+    return date.day <= 30;
 }
 
 bool isDigit(int character)
@@ -155,7 +155,7 @@ int getMaxDateFromFile(FILE *inputFile, Date *maxDate)
 
         currentChar = fgetc(inputFile);
 
-        if (currentDate.currentLenght > 6 && !isDigit(currentChar))
+        if (currentDate.currentLenght > 6 && !isDigit(currentChar) && isValidDate(currentDate))
         {
             wasFirstDate = true;
             *maxDate = getMaxDate(*maxDate, currentDate);
